@@ -1,22 +1,26 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { IonictakepictureComponent } from './components/ionictakepicture.component';
 import { IonictakepictureProvider } from './providers/Ionictakepicture.provider';
 import { IonicModule } from '@ionic/angular';
 import { Camera } from '@ionic-native/camera/ngx';
-var IonicTakePictureModule = /** @class */ (function () {
-    function IonicTakePictureModule() {
+var IonictakepicturewrapperModule = /** @class */ (function () {
+    function IonictakepicturewrapperModule() {
     }
-    IonicTakePictureModule.forRoot = function () {
+    IonictakepicturewrapperModule.forRoot = function () {
         return {
-            ngModule: IonicTakePictureModule,
+            ngModule: IonictakepicturewrapperModule,
             providers: [IonictakepictureProvider]
         };
     };
-    IonicTakePictureModule.decorators = [
+    IonictakepicturewrapperModule.decorators = [
         { type: NgModule, args: [{
                     imports: [
                         // Only if you use elements like ion-content, ion-xyz...
-                        IonicModule
+                        IonicModule,
+                        CommonModule,
+                        BrowserModule
                     ],
                     declarations: [
                         // declare all components that your module uses
@@ -31,7 +35,7 @@ var IonicTakePictureModule = /** @class */ (function () {
                     ]
                 },] },
     ];
-    return IonicTakePictureModule;
+    return IonictakepicturewrapperModule;
 }());
-export { IonicTakePictureModule };
-//# sourceMappingURL=takepicture.module.js.map
+export { IonictakepicturewrapperModule };
+//# sourceMappingURL=ionictakepicture.module.js.map

@@ -16,7 +16,7 @@ npm install ionictakepicture
 2. Import and add in app.module.ts
 ```
 ....
-import { IonicTakePictureModule,IonictakepictureProvider } from 'ionictakepicture';
+import { IonictakepicturewrapperModule,IonictakepictureProvider } from 'ionictakepicture';
 ....
 ```
 
