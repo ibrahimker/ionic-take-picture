@@ -1,7 +1,7 @@
-# Ionic Signature Pad
+# Ionic Take Picture (Camera Plugin Wrapper)
 This is an ionic 4 plugin to take picture from device camera. This plugin is based on [ionic native camera plugin](https://beta.ionicframework.com/docs/native/camera/).
 
-![Example](https://github.com/ibrahimker/ionic-take-picture/img/screenshot.png)
+![Example](https://raw.githubusercontent.com/ibrahimker/ionic-take-picture/master/img/screenshot.png)
 
 # Disclaimer
 This project was tested in ionic 4.0.0-beta.15 for my personal purposes
