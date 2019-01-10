@@ -1,0 +1,33 @@
+import { OnInit } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import { ToastController, Platform } from '@ionic/angular';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+export declare class IonictakepictureComponent implements OnInit, ControlValueAccessor {
+    private camera;
+    private toastController;
+    private plt;
+    pictureData: string;
+    cameraOptions: CameraOptions;
+    retake: string;
+    constructor(camera: Camera, toastController: ToastController, plt: Platform);
+    color: string;
+    targetWidth: number;
+    saveToPhotoAlbum: boolean;
+    cameraDirection: number;
+    destinationType: number;
+    encodingType: number;
+    mediaType: number;
+    targetHeight: number;
+    quality: number;
+    language: string;
+    ngOnInit(): void;
+    private onTouch;
+    private disabled;
+    onChange(data: any): void;
+    writeValue(value: any): void;
+    registerOnChange(fn: any): void;
+    registerOnTouched(fn: any): void;
+    setDisabledState(disabled: boolean): void;
+    takePicture(): void;
+    presentToast(text: any, type: any): Promise<void>;
+}
