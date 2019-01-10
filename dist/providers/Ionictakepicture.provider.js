@@ -11,4 +11,4 @@ var IonictakepictureProvider = /** @class */ (function () {
     return IonictakepictureProvider;
 }());
 export { IonictakepictureProvider };
-//# sourceMappingURL=Ionictakepicture.provider.js.map
+//# sourceMappingURL=ionictakepicture.provider.js.map
