@@ -18,35 +18,29 @@ var HTMLTEMPLATE=`
 `;
 var STYLESHEET = `
 .button-take-picture{
-    --border-width: 2px;
-    --border-radius: 16px;
-    --height: 100px;
-    --width: 100px;
-    --box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
-    --margin-top: 8px;
-    --margin-bottom: 8px;
-    --margin-start: 0;
-    --margin-end: 0;
+    border-width: 2px;
+    border-radius: 16px;
+    height: 100px;
+    width: 100px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 .retake-button-container{
-    --width: 100px;
-    --border-width: 2px;
+    width: 100px;
+    border-width: 2px;
     --box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
-    --height: 32px;
-    --margin-top: 0px;
-    --margin-bottom: 0px;
-    --margin-start: 0px;
-    --margin-end: 0px; 
+    height: 40px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 .two-button-container{
-    --width:100px;
-    --border-width: 2px;
+    width:100px;
+    border-width: 2px;
     --box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
-    --height: 40px;
-    --margin-top: 0px;
-    --margin-bottom: 0px;
-    --margin-start: 0px;
-    --margin-end: 0px; 
+    height: 40px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 .button-box-shadow button.button-native{
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
@@ -103,6 +97,15 @@ export class IonictakepictureComponent implements OnInit,ControlValueAccessor {
         CUSTOM_COLOR=".custom-color {--ion-color-warning:"+data+";}"
     }
 
+    @Input() set initialImage(data: string) {
+        if(data === undefined || data == null) {
+            this.pictureData = '';
+        }
+        else {
+            this.pictureData = data;
+        }
+    }
+
     @Input() set targetWidth(data: number) {
         this.cameraOptions.targetWidth = data;
     }
@@ -152,8 +155,14 @@ export class IonictakepictureComponent implements OnInit,ControlValueAccessor {
 
     // Allow Angular to set the value on the component
     writeValue(value): void {
-        this.onChange(value)
-        
+        if(value === undefined || value == null) {
+            this.pictureData = '';
+            this.onChange(this.pictureData);
+        }
+        else {
+            this.pictureData = value;
+            this.onChange(this.pictureData);
+        }
     }
 
     // Save a reference to the change function passed to us by 

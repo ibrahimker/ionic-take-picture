@@ -4,7 +4,7 @@ This is an ionic 4 plugin to take picture from device camera. This plugin is bas
 ![Example](https://raw.githubusercontent.com/ibrahimker/ionic-take-picture/master/img/screenshot.png)
 
 # Disclaimer
-This project was tested in ionic 4.0.0-beta.15 for my personal purposes
+This project was tested in ionic 4.0.0 for my personal purposes
 
 ## How to use
 

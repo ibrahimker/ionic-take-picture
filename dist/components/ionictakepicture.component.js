@@ -38,7 +38,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ToastController, Platform } from '@ionic/angular';
 import { Camera } from '@ionic-native/camera/ngx';
 var HTMLTEMPLATE = "\n<div *ngIf=\"pictureData == ''\">\n<ion-button (click)=\"takePicture()\" color=\"warning\" fill=\"outline\" class=\"button-take-picture custom-color\">\n<img src=\"assets/general/TakePictureIcon.svg\"/>\n</ion-button>\n</div>\n<div *ngIf=\"pictureData != ''\" style=\"display:grid;\">\n<img [src]=\"pictureData\" class=\"image-container\"/>\n<ion-button shape=\"round\" fill=\"outline\" color=\"warning\" class=\"two-button-container button-box-shadow retake-button-container custom-color\" (click)=\"takePicture()\">\n<p class=\"notosans-bold lightblack no-margin border-width-secondary-button text-button\">{{retake}}</p>\n</ion-button>\n</div>\n";
-var STYLESHEET = "\n.button-take-picture{\n    --border-width: 2px;\n    --border-radius: 16px;\n    --height: 100px;\n    --width: 100px;\n    --box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);\n    --margin-top: 8px;\n    --margin-bottom: 8px;\n    --margin-start: 0;\n    --margin-end: 0;\n}\n.retake-button-container{\n    --width: 100px;\n    --border-width: 2px;\n    --box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);\n    --height: 32px;\n    --margin-top: 0px;\n    --margin-bottom: 0px;\n    --margin-start: 0px;\n    --margin-end: 0px; \n}\n.two-button-container{\n    --width:100px;\n    --border-width: 2px;\n    --box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);\n    --height: 40px;\n    --margin-top: 0px;\n    --margin-bottom: 0px;\n    --margin-start: 0px;\n    --margin-end: 0px; \n}\n.button-box-shadow button.button-native{\n    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);\n}\n.notosans-bold{\n    font-family: 'NotoSans-Bold' !important;\n}\n.lightblack{\n    color:#221e20;\n}\n.no-margin{\n    margin:0;\n}\n.text-button{\n    font-size: 14px;\n    line-height: 1.29;\n    text-transform: capitalize;\n}";
+var STYLESHEET = "\n.button-take-picture{\n    border-width: 2px;\n    border-radius: 16px;\n    height: 100px;\n    width: 100px;\n    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);\n    margin-top: 8px;\n    margin-bottom: 8px;\n}\n.retake-button-container{\n    width: 100px;\n    border-width: 2px;\n    --box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);\n    height: 40px;\n    margin-top: 0px;\n    margin-bottom: 0px;\n}\n.two-button-container{\n    width:100px;\n    border-width: 2px;\n    --box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);\n    height: 40px;\n    margin-top: 0px;\n    margin-bottom: 0px;\n}\n.button-box-shadow button.button-native{\n    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);\n}\n.notosans-bold{\n    font-family: 'NotoSans-Bold' !important;\n}\n.lightblack{\n    color:#221e20;\n}\n.no-margin{\n    margin:0;\n}\n.text-button{\n    font-size: 14px;\n    line-height: 1.29;\n    text-transform: capitalize;\n}";
 var CUSTOM_COLOR = "\n.custom-color {\n    --ion-color-warning:#FFD500;\n}";
 var IonictakepictureComponent = /** @class */ (function () {
     function IonictakepictureComponent(camera, toastController, plt) {
@@ -64,6 +64,18 @@ var IonictakepictureComponent = /** @class */ (function () {
     Object.defineProperty(IonictakepictureComponent.prototype, "color", {
         set: function (data) {
             CUSTOM_COLOR = ".custom-color {--ion-color-warning:" + data + ";}";
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(IonictakepictureComponent.prototype, "initialImage", {
+        set: function (data) {
+            if (data === undefined || data == null) {
+                this.pictureData = '';
+            }
+            else {
+                this.pictureData = data;
+            }
         },
         enumerable: true,
         configurable: true
@@ -137,7 +149,14 @@ var IonictakepictureComponent = /** @class */ (function () {
     };
     // Allow Angular to set the value on the component
     IonictakepictureComponent.prototype.writeValue = function (value) {
-        this.onChange(value);
+        if (value === undefined || value == null) {
+            this.pictureData = '';
+            this.onChange(this.pictureData);
+        }
+        else {
+            this.pictureData = value;
+            this.onChange(this.pictureData);
+        }
     };
     // Save a reference to the change function passed to us by 
     // the Angular form control
@@ -212,6 +231,7 @@ var IonictakepictureComponent = /** @class */ (function () {
     ]; };
     IonictakepictureComponent.propDecorators = {
         color: [{ type: Input }],
+        initialImage: [{ type: Input }],
         targetWidth: [{ type: Input }],
         saveToPhotoAlbum: [{ type: Input }],
         cameraDirection: [{ type: Input }],

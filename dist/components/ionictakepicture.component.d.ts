@@ -11,6 +11,7 @@ export declare class IonictakepictureComponent implements OnInit, ControlValueAc
     retake: string;
     constructor(camera: Camera, toastController: ToastController, plt: Platform);
     color: string;
+    initialImage: string;
     targetWidth: number;
     saveToPhotoAlbum: boolean;
     cameraDirection: number;
